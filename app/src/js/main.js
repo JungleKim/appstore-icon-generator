@@ -16,7 +16,6 @@ var checkFileAPI = function() {
     && window.FileList && window.Blob;
 };
 
-
 var makeImageFactory = function() {
   ImageFactory({
     'validators': [
@@ -90,6 +89,6 @@ var draggable = function() {
   });
 };
 
-var callback = function(type) {
+var callback = function(type, data) {
   console.log(type);
 };

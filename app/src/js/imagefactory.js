@@ -29,10 +29,13 @@
       'FileValid': 1,
       'Progress': 2,
     };
-
+    ImageFactory.sendCallback = function(type, data) {
+      if (this.callback && type in this.callbackType) {
+        this.callback(this.callbackType[type], data);
+      }
+    };
   
-    ImageFactory.setFile = function(file) {
-      var $this = this;
+    ImageFactory.setFile = function(file) { var self = this;
       var promises = (this.validators || []).map(function(validator) {
         return validator(file);
       });
@@ -44,21 +47,16 @@
 
         var type = 'FileInValid';
         if (isValid) {
-          $this.currentFile = file;
+          self.currentFile = file;
           type = 'FileValid';
         }
 
-        if ($this.callback) {
-          $this.callback(
-            $this.callbackType[type], 
-            {file: $this.currentFile}
-          );
-        }
+        self.sendCallback(
+          type, 
+          {file: self.currentFile}
+        );
       }, function(reason) {
-        console.log(reason);
-        if ($this.callback) {
-          $this.callback($this.callbackType['FileInValid']);
-        }
+        self.sendCallback('FileInValid');
       });
     };
   
