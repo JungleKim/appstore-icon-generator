@@ -12,6 +12,7 @@ Generator해주는 웹페이지를 만들었다..
 
 ```
 1. jQuery
+3. JSZip
 2. Sass
 ```
 
