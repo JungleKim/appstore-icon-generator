@@ -9,6 +9,10 @@ $(function() {
   makeImageFactory();
   blockMovePage();
   draggable();
+
+  $('.button').on('click', function() {
+    ImageFactory.save();
+  });
 });
 
 var checkFileAPI = function() {

@@ -27,8 +27,12 @@
     ImageFactory.callbackType = {
       'FileInValid': 0,
       'FileValid': 1,
-      'Progress': 2,
+      'Clear': 2,
+      'Progress': 3,
+      'SaveFail': 4,
+      'SaveSuccess': 5,
     };
+
     ImageFactory.sendCallback = function(type, data) {
       if (this.callback && type in this.callbackType) {
         this.callback(this.callbackType[type], data);
@@ -51,10 +55,7 @@
           type = 'FileValid';
         }
 
-        self.sendCallback(
-          type, 
-          {file: self.currentFile}
-        );
+        self.sendCallback(type, {file: self.currentFile});
       }, function(reason) {
         self.sendCallback('FileInValid');
       });
@@ -62,26 +63,91 @@
   
     ImageFactory.clear = function() {
       this.currentFile = undefined;
+      this.sendCallback('Clear');
     };
 
-    ImageFactory.save = function(options) {
+    ImageFactory.save = function() {
       if (this.currentFile == undefined) {
-        alert('Need Icon File');
+        this.sendCallback('SaveFail');
         return;
       }
 
-      options = options || { assets: true };
-      // File열심히 Generator
-      
-      if (options['assets']) {
-        // Make Content.json
-      }
+      var self = this;
+      new Promise(function(resolve, rejected) {
+        var reader = new FileReader();
+
+        reader.onload = resolve;
+        reader.onerror = rejected;
+
+        reader.readAsDataURL(self.currentFile);
+      })
+      .then(function(e) {
+        return TVHL.makeResizePromises(e.target.result);
+      }, function() {})
+      .then(function(files) {
+        var zip = new JSZip();
+        zip.file(iOS.ContentsName, JSON.stringify(iOS.Contents));
+        files.forEach(function(file, index) {
+          zip.file(
+            file.filename, 
+            file.data.replace('data:image/png;base64,', ''), 
+            {base64: true});
+        });
+
+        return zip.generateAsync({type: 'blob'});
+      })
+      .then(function(content) {
+        saveAs(content, iOS.assetName+'.zip');
+      });
     };
 
+    var TVHL = {};
+    TVHL.makeResizePromises = function(fileData) {
+      var promises = [];
+      iOS.icons.forEach(function(fileInfo, index) {
+        promises.push(
+          TVHL.resizePromise(
+            fileData, 
+            fileInfo.size, 
+            fileInfo.scale
+          )
+        );
+      });
+
+      return Promise.all(promises);
+    };
+
+    TVHL.resizePromise = function(fileData, size, scale) {
+      return new Promise(function(resolve, rejected) {
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+        var image = new Image();
+        image.onload = function() {
+          canvas.width = size.width * scale;
+          canvas.height = size.height * scale;
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+          resolve(canvas.toDataURL()); // resolve
+        };
+        image.onerror = rejected;
+
+        image.src = fileData;
+      }).then(function(data) {
+        var filename = "Icon-"+size.width; //Icon-29
+        if (scale != 1) {
+          filename += "@"+scale+"x";
+        }
+        filename += ".png";
+
+        return {data: data, filename: filename};
+      }, function() {
+        // rejected
+        console.log('Reject: '+size);
+      });
+    };
 
     return ImageFactory;
   };
-
 
   global.ImageFactory = factory(); 
 })(typeof window === 'undefined' ? this : window);
