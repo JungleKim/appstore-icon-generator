@@ -18,7 +18,9 @@ const sassPath = "./app/src/scss/**/*.scss";
 const jsPath = "./app/src/js/**/*.js";
 
 gulp.task('clean:dist', function() {
-  del.sync('dist');
+  del.sync('./dist/css/');
+  del.sync('./dist/js/');
+  del.sync('./dist/index.html');
 });
 
 gulp.task('sass', function() {
@@ -43,7 +45,7 @@ gulp.task('useref', function(){
     .pipe(useref())
     .pipe(gulpIf('*.js', uglify()))
     .pipe(gulpIf('*.css', cssnano()))
-    .pipe(gulp.dest('.'));
+    .pipe(gulp.dest('./dist/'));
 });
 
 // Watch Setting
@@ -64,3 +66,6 @@ gulp.task('build', function(callback) {
 
 // Default Setting
 gulp.task('default', ['sass', 'browserSync', 'watch']);
+
+// Alias
+gulp.task('clean', ['clean:dist']);
