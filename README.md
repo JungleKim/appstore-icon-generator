@@ -1,8 +1,8 @@
 
 
-## AppStore Icon Generator
+## iOS Icon Generator
 
-iOS앱을 만들다가 Assets에 icon등록할게 너무 많았따... 
+iOS앱을 만들다가 Assets에 icon등록할게 너무 많았다... 
 너무 귀찮아서 1024*1024 icon을 받아서 그 하위 아이콘들을 
 Generator해주는 웹페이지를 만들었다..
 
@@ -10,9 +10,8 @@ Generator해주는 웹페이지를 만들었다..
 
 ## Using
 
-```
-1. jQuery
-3. JSZip
-2. Sass
-```
+1. [jQuery](https://jquery.com/)
+2. [JSZip](https://stuk.github.io/jszip/)
+3. [FileSaver](https://github.com/eligrey/FileSaver.js/)
+4. [Sass](http://sass-lang.com/)
 
