@@ -1,7 +1,7 @@
 {
-  "name": "appstore-icon-generator",
+  "name": "ios-icon-generator",
   "version": "1.0.0",
-  "description": "Appstore Icon Generator",
+  "description": "Ios Icon Generator",
   "main": "index.js",
   "scripts": {
     "sass": "gulp sass",
@@ -13,18 +13,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JungleKim/appstore-icon-generator.git"
+    "url": "git+https://github.com/JungleKim/ios-icon-generator.git"
   },
   "keywords": [
-    "Appstore",
+    "iOS",
     "Icon"
   ],
   "author": "JungleKim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JungleKim/appstore-icon-generator/issues"
+    "url": "https://github.com/JungleKim/ios-icon-generator/issues"
   },
-  "homepage": "https://github.com/JungleKim/appstore-icon-generator#readme",
+  "homepage": "https://github.com/JungleKim/ios-icon-generator#readme",
   "devDependencies": {
     "browser-sync": "^2.14.0",
     "del": "^2.2.2",
