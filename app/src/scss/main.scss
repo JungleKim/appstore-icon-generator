@@ -1,7 +1,115 @@
-.dnd {
-    margin: 150px auto;
-    width: 300px;
-    height: 300px;
 
-    background-color: coral;
+$dark-indigo: #11171f;
+$stale-indigo: #222b38;
+$light-indigo: #546377;
+$gray: #eaeaea;
+
+body {
+    background-color: $gray;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+
+    .title {
+        color: $dark-indigo;
+        font-size: 2.5em;
+        font-weight: bolder;
+    }
+
+    .description {
+        color: $dark-indigo;
+        font-size: 1.25em;
+    }
+}
+
+article {
+    section {
+        margin: 0 auto;
+        width: 30%;
+        height: 550px;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+        .generator {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background-color: white;
+
+            outline: 2px dashed $stale-indigo;
+            outline-offset: -10px;
+
+            font-size: 1.2em;
+            color: $dark-indigo;
+
+            &.dragover {
+                background-color: #c7dfe8;
+            }
+        
+            &__box {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -webkit-transform: translate(-50%,-50%);
+                transform: translate(-50%,-50%);
+            }
+        
+            &__input {
+                display: none;
+                text-align: center;
+                label {
+                    cursor: pointer;
+                }
+        
+                .highlight {
+                    font-weight: bold;
+        
+                    &:hover {
+                        color: $light-indigo;
+                    }
+                }
+            }
+        
+            &__file {
+                display: none;
+            }
+        
+            &__msg {
+                display: none;
+                text-align: center;
+        
+                &.error {
+                    color: orangered;
+                }
+            }
+        
+            .show {
+                display: block;
+            }
+        }
+        
+        .action {
+            height: 50px;
+
+            background-color: $dark-indigo;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            line-height: 50px;
+        
+            .button {
+                display: inline-block;
+                width: 50%; height: 100%;
+                text-align: center;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: $light-indigo;
+                }
+            }
+        }
+    }
+}
+
+footer {
 }

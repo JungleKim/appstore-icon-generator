@@ -28,9 +28,8 @@
       'FileInValid': 0,
       'FileValid': 1,
       'Clear': 2,
-      'Progress': 3,
-      'SaveFail': 4,
-      'SaveSuccess': 5,
+      'SaveFail': 3,
+      'SaveSuccess': 4,
     };
 
     ImageFactory.sendCallback = function(type, data) {
@@ -55,9 +54,9 @@
           type = 'FileValid';
         }
 
-        self.sendCallback(type, {file: self.currentFile});
+        self.sendCallback(type, {msg: self.currentFile.name});
       }, function(reason) {
-        self.sendCallback('FileInValid');
+        self.sendCallback('FileInValid', {msg: reason});
       });
     };
   
@@ -68,7 +67,7 @@
 
     ImageFactory.save = function() {
       if (this.currentFile == undefined) {
-        this.sendCallback('SaveFail');
+        this.sendCallback('SaveFail', {msg: 'Not Exist File'});
         return;
       }
 
@@ -98,6 +97,7 @@
       })
       .then(function(content) {
         saveAs(content, iOS.assetName+'.zip');
+        self.sendCallback('SaveSuccess');
       });
     };
 

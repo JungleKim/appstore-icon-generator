@@ -1,27 +1,46 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Appstore Icon Generator</title>
-
-    <!--build:css css/styles.min.css-->
-      <link type="text/css" rel="stylesheet" href="./src/css/normalize.css" />
-      <link type="text/css" rel="stylesheet" href="./src/css/main.css" />
-    <!--endbuild-->
+    <title>iOS Icon Generator</title>
+    <meta charset="utf-8">
 
     <!--build:js js/lib/vendor.min.js-->
     <script type="text/javascript" src="./src/js/lib/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="./src/js/lib/jszip.min.js"></script>
     <script type="text/javascript" src="./src/js/lib/FileSaver.min.js"></script>
     <!-- endbuild -->
+
+    <!--build:css css/styles.min.css-->
+    <link type="text/css" rel="stylesheet" href="./src/css/normalize.css" />
+    <link type="text/css" rel="stylesheet" href="./src/css/main.css" />
+    <!--endbuild-->
   </head>
   <body>
-    <div class="dnd">
-      Drag and Drop
-    </div>
+    <header>
+      <span class="title">iOS Icon Generator</span><br>
+      <span class="description">- Made by JungleKim -</span>
+    </header>
+    <article>
+      <section>
+        <div class="generator">
+          <div class="generator__box">
+            <div class="generator__input show">
+              <input class="generator__file" id="image" type="file"/>
+              <label for="image">
+                <span class="highlight">Choose as File</span><br>
+                <span>or drag and drop</span>
+              </label>
+            </div>
+            <div class="generator__msg"></div>
+          </div>
+        </div>
+        <div class="action">
+          <div class="button clear">Clear</div><!--
+          --><div class="button save">Save</div>
+        </div>
+      </section>
+    </article>
 
-    <div class="button">이것은 버튼입니다</div>
-
-    <div class="icon-generator">
-    </div>
     <!--build:js js/main.min.js -->
     <script type="text/javascript" src="./src/js/variable.js"></script>
     <script type="text/javascript" src="./src/js/imagefactory.js"></script>
