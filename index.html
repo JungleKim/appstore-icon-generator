@@ -1,20 +1,39 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Appstore Icon Generator</title>
-
-    <link rel="stylesheet" href="css/styles.min.css">
+    <title>iOS Icon Generator</title>
+    <meta charset="utf-8">
 
     <script src="js/lib/vendor.min.js"></script>
+
+    <link rel="stylesheet" href="css/styles.min.css">
   </head>
   <body>
-    <div class="dnd">
-      Drag and Drop
-    </div>
+    <header>
+      <span class="title">iOS Icon Generator</span><br>
+      <span class="description">- Made by JungleKim -</span>
+    </header>
+    <article>
+      <section>
+        <div class="generator">
+          <div class="generator__box">
+            <div class="generator__input show">
+              <input class="generator__file" id="image" type="file"/>
+              <label for="image">
+                <span class="highlight">Choose as File</span><br>
+                <span>or drag and drop</span>
+              </label>
+            </div>
+            <div class="generator__msg"></div>
+          </div>
+        </div>
+        <div class="action">
+          <div class="button clear">Clear</div><!--
+          --><div class="button save">Save</div>
+        </div>
+      </section>
+    </article>
 
-    <div class="button">이것은 버튼입니다</div>
-
-    <div class="icon-generator">
-    </div>
     <script src="js/main.min.js"></script>
   </body>
 </html>
