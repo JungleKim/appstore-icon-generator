@@ -1,5 +1,5 @@
-
 $(function() {
+
   if (!checkFileAPI()) {
     showError('The File APIs are not fully supported in this browser.');
     return;
@@ -94,7 +94,6 @@ var dropImage = function(e) {
 };
 
 var callback = function(type, data) {
-
   if (type === ImageFactory.callbackType['FileInValid'] ||
       type === ImageFactory.callbackType['FileValid'] ||
       type === ImageFactory.callbackType['SaveFail']) {

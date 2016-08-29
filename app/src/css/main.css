@@ -67,3 +67,16 @@ article section {
       cursor: pointer; }
       article section .action .button:hover {
         background-color: #546377; }
+
+.github {
+  position: fixed;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  background-color: coral;
+  padding: 5px; }
+  .github a {
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+    font-weight: bold; }
