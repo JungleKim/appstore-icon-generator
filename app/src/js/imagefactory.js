@@ -48,13 +48,14 @@
           isValid &= vvalue;
         });
 
-        var type = 'FileInValid';
         if (isValid) {
           self.currentFile = file;
-          type = 'FileValid';
+          self.sendCallback('FileValid', {msg: self.currentFile.name});
+        } else {
+          // TODO rejected로 빼기
+          self.currentFile = undefined;
+          self.sendCallback('FileInValid', {msg: 'Only Supported 1024x1024 Image'});
         }
-
-        self.sendCallback(type, {msg: self.currentFile.name});
       }, function(reason) {
         self.sendCallback('FileInValid', {msg: reason});
       });

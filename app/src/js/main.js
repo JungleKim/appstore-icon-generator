@@ -66,7 +66,7 @@ var makeImageFactory = function() {
             return true;
           }
 
-          return "Only Supported 1024x1024 Image";
+          return false;
         });
       },
     ],
